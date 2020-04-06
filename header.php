@@ -32,5 +32,6 @@
 			
           </ul>
         </li>
+		 <li><a href="serviceadd.php">Log Out</a></li>
       </ul>
     </header>

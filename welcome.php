@@ -42,7 +42,7 @@
 				<h2>
 				<?php
 				
-				require_once 'connection.php';
+				require_once 'config.php';
 				
 				session_start();
 
@@ -53,7 +53,7 @@
 				
 				$id = $_SESSION['user_login'];
 				
-				$select_stmt = $db->prepare("SELECT * FROM tbl_user WHERE user_id=:uid");
+				$select_stmt = $pdo->prepare("SELECT * FROM tbl_user WHERE user_id=:uid");
 				$select_stmt->execute(array(":uid"=>$id));
 	
 				$row=$select_stmt->fetch(PDO::FETCH_ASSOC);

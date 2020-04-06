@@ -1,6 +1,6 @@
 <?php
 
-require_once "connection.php";
+require_once "config.php";
 
 if(isset($_REQUEST['btn_register'])) //button name "btn_register"
 {
@@ -27,7 +27,7 @@ if(isset($_REQUEST['btn_register'])) //button name "btn_register"
 	{	
 		try
 		{	
-			$select_stmt=$db->prepare("SELECT username, email FROM tbl_user 
+			$select_stmt=$pdo->prepare("SELECT username, email FROM tbl_user 
 										WHERE username=:uname OR email=:uemail"); // sql select query
 			
 			$select_stmt->execute(array(':uname'=>$username, ':uemail'=>$email)); //execute query 
@@ -43,7 +43,7 @@ if(isset($_REQUEST['btn_register'])) //button name "btn_register"
 			{
 				$new_password = password_hash($password, PASSWORD_DEFAULT); //encrypt password using password_hash()
 				
-				$insert_stmt=$db->prepare("INSERT INTO tbl_user	(username,email,password) VALUES
+				$insert_stmt=$pdo->prepare("INSERT INTO tbl_user	(username,email,password) VALUES
 																(:uname,:uemail,:upassword)"); 		//sql insert query					
 				
 				if($insert_stmt->execute(array(	':uname'	=>$username, 

@@ -28,7 +28,7 @@ if(isset($_REQUEST['btn_login']))	//button name is "btn_login"
 	{
 		try
 		{
-			$select_stmt=$pdo->prepare("SELECT * FROM tbl_user WHERE username=:uname OR email=:uemail"); //sql select query
+			$select_stmt=$db->prepare("SELECT * FROM tbl_user WHERE username=:uname OR email=:uemail"); //sql select query
 			$select_stmt->execute(array(':uname'=>$username, ':uemail'=>$email));	//execute query with bind parameter
 			$row=$select_stmt->fetch(PDO::FETCH_ASSOC);
 			
@@ -40,7 +40,7 @@ if(isset($_REQUEST['btn_login']))	//button name is "btn_login"
 					{
 						$_SESSION["user_login"] = $row["user_id"];	//session name is "user_login"
 						$loginMsg = "Successfully Login...";		//user login success message
-						header("refresh:2; welcome.php");			//refresh 2 second after redirect to "1.php" page
+						header("refresh:2; welcome.php");			//refresh 2 second after redirect to "welcome.php" page
 					}
 					else
 					{
